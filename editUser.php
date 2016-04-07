@@ -12,12 +12,12 @@
       
       $fm = new FileMaker($databasename, $ip, $login, $pass);
       
-      $findRec = $fm->newFindCommand('edpTest');
+      $findRec = $fm->newFindCommand('users');
       $findRec->addFindCriterion('id', $editId);
 	    $result = $findRec->execute();
       $records = $result->getRecords();
 	    $recID = $records[0]->getRecordID();
-      $newEdit = $fm->newEditCommand('edpTest', $recID);
+      $newEdit = $fm->newEditCommand('users', $recID);
       
       $returnValue = array();
       array_push($returnValue, array('id'=>$editId));
@@ -34,6 +34,7 @@
      
      if(empty($_REQUEST['password']) == false){
         $newEdit->setField('password', $editPassword);
+        $newEdit->setField('changedPassword', "true");
         array_push($returnValue, array('password'=>$editPassword));
 	   }
      
