@@ -32,9 +32,33 @@ if(isset($_REQUEST['student']) && isset($_REQUEST['courseSection'])){
   $newPerformScript = $fm->newPerformScriptCommand('courses_students','getStudentsAndCourses');
   $result2 = $newPerformScript->execute(); 
 
-	$returnValue = 1;
-	echo $returnValue;
+  $compoundFind2 = $fm->newCompoundFindCommand('courses_students');
+	$findReq12 = $fm->newFindRequest('courses_students');
+
+  $findReq12->addFindCriterion('student_id', '=='.$student);
+  $findReq12->addFindCriterion('course_section_id', '=='.$courseSection);
+
+	$compoundFind2->add(1,$findReq12);
+  $compoundFind2->add(2,$findReq12);
+
+	$result5 = $compoundFind2->execute();
+  
+  if (FileMaker::isError($result5)) {
+  
+    $returnValue = 2;
+    echo $returnValue;
+    exit();
+  
+  } else {
+  $records2 = $result5->getRecords();
+	    $recID = $records2[0]->getField('id');
+  
+         	//$returnValue = 1;
+	echo $recID;
   	exit();
+  
+  }
+
 
 	} else {
 
