@@ -42,6 +42,31 @@
 
    $returnValue = array("Sign In"=>"True", "ID"=>$id, "Role"=>$role, "FirstName"=>$firstname, "LastName"=>$lastname, "Registered"=>$registered);
 	 echo json_encode($returnValue);
+   
+   $findRec2 = $fm->newCompoundFindCommand('acl');
+  $findReq12 = $fm->newFindRequest('acl');
+  $findReq12->addFindCriterion('userId', $id);
+  $findRec2->add(1,$findReq12);
+  $result2 = $findRec2->execute();
+  
+  if (FileMaker::isError($result2)) 
+	{
+     
+     $data2 = array("userId"=>$id);
+     $rec = $fm->newAddCommand('acl', $data2);
+	$add = $rec->execute();
+  
+  $newPerformScript = $fm->newPerformScriptCommand('acl','getEverythingForACL');
+  $result3 = $newPerformScript->execute();
+  exit();
+     
+  } else {
+  
+     exit();
+  }
+  
+  
+  
   }
   
   exit();
