@@ -29,6 +29,7 @@ if(isset($_REQUEST['course']) && isset($_REQUEST['section']) && isset($_REQUEST[
   
 	$rec = $fm->newAddCommand('courses_sections', $data);
 	$add = $rec->execute();
+  
   $newPerformScript = $fm->newPerformScriptCommand('courses_sections','getCourseCodesForCourseSection');
   $result2 = $newPerformScript->execute();
   
@@ -38,9 +39,33 @@ if(isset($_REQUEST['course']) && isset($_REQUEST['section']) && isset($_REQUEST[
   $newPerformScript3 = $fm->newPerformScriptCommand('courses_sections','getTaForCoursesSections');
   $result4 = $newPerformScript3->execute(); 
 
-	$returnValue = 1;
-	echo $returnValue;
+  $compoundFind2 = $fm->newCompoundFindCommand('courses_sections');
+	$findReq12 = $fm->newFindRequest('courses_sections');
+
+	$findReq12->addFindCriterion('course_id', '=='.$course);
+  $findReq12->addFindCriterion('sections_id', '=='.$section);
+
+	$compoundFind2->add(1,$findReq12);
+  $compoundFind2->add(2,$findReq12);
+
+	$result5 = $compoundFind2->execute();
+  
+  if (FileMaker::isError($result5)) {
+  
+    $returnValue = 2;
+    echo $returnValue;
+    exit();
+    
+  }else {
+  
+    $records2 = $result5->getRecords();
+	    $recID = $records2[0]->getField('id');
+  
+         	//$returnValue = 1;
+	echo $recID;
   	exit();
+  }
+
 
 	} else {
 
