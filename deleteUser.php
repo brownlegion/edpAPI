@@ -14,8 +14,8 @@ if(isset($_REQUEST['id'])) {
    
    $fm = new FileMaker($databasename, $ip, $login, $pass);
    
-   $compoundFind = $fm->newCompoundFindCommand('marks 2');
-	 $findReq1 = $fm->newFindRequest('marks 2');
+   $compoundFind = $fm->newCompoundFindCommand('courses_students');
+	 $findReq1 = $fm->newFindRequest('courses_students');
    $findReq1->addFindCriterion('student_id', '=='.$deleteId);
    $compoundFind->add(1,$findReq1);
    $result1 = $compoundFind->execute();
@@ -27,6 +27,8 @@ if(isset($_REQUEST['id'])) {
 	    $result = $findRec->execute();
       $records = $result->getRecords();
 	    $recID = $records[0]->getRecordID();
+      
+      if (($records[0]->getField('role')) == 3) {
       $newDelete = $fm->newDeleteCommand('users', $recID);
    
    //$newDelete = $fm->newDeleteCommand('edpTest', $deleteId);
@@ -45,10 +47,16 @@ if(isset($_REQUEST['id'])) {
      //exit();
    
    }
+   } else {
+    echo 'Only students can be deleted.';
+
+   }
+   
    
    } else {
    
-   echo 'User has a mark associated with them.';
+   echo 'User is enrolled in a class.';
+
    
    }
    
