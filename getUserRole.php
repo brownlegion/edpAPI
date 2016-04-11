@@ -35,10 +35,14 @@ $id = $_REQUEST['id'];
            $section = $record->getField('editGrades');
            $section2 = $record->getField('deleteGrades');
            $section3 = $record->getField('viewGrades');
+           $createCourses = $record->getField('createCourses');
+      $createSections = $record->getField('createSections');
+      $addStudents = $record->getField('addStudents');
            //array_push($permissions, array('createUsers'=>$tempid, 'editUsers'=>$tempmark, 'deleteUsers'=>$updated, 'viewUsers'=>$updatedBy, 
            //'addGrades'=>$course, 'editGrades'=>$section, 'deleteGrades'=>$section2, 'viewGrades'=>$section3));
            $permissions = array('createUsers'=>$tempid, 'editUsers'=>$tempmark, 'deleteUsers'=>$updated, 'viewUsers'=>$updatedBy, 
-           'addGrades'=>$course, 'editGrades'=>$section, 'deleteGrades'=>$section2, 'viewGrades'=>$section3);
+           'addGrades'=>$course, 'editGrades'=>$section, 'deleteGrades'=>$section2, 'viewGrades'=>$section3,
+           'createCourses'=>$createCourses, 'createSections'=>$createSections, 'addStudents'=>$addStudents);
     
     }
     
