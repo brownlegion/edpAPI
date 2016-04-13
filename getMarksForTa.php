@@ -60,7 +60,7 @@
             
                 $records3 = $result3->getRecords();
                 foreach ($records3 as $record3) {
-                                            $tempid3 = $record->getField('id');
+           $tempid3 = $record3->getField('id');
            $tempmark = $record3->getField('mark');
            $updated = $record3->getField('last_updated');
            $updatedBy = $record3->getField('last_updated_by');
