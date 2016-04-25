@@ -47,10 +47,19 @@
                     $updated = $record2->getField('username');
                     $course = $record2->getField('courseTitle');
                     $section = $record2->getField('sectionNumber');
+                    $sectionCourse = $record2->getField('course_section_id');
                     $firstname = $record2->getField('firstname');
                     $lastname = $record2->getField('lastname');
+                    $findRec3 = $fm->newCompoundFindCommand('marks 2');
+                    $findReq3 = $fm->newFindRequest('marks 2');
+                    $findReq3->addFindCriterion('course_student_id_fk', $tempid2);
+                    $findRec3->add(1,$findReq3);
+                    $result3 = $findRec3->execute();
+                    
+                    if (FileMaker::isError($result3)) {
                     array_push($marks, array('id'=>$tempid2, 'studentId'=>$tempmark, 'username'=>$updated, 
-                    'firstname'=>$firstname, 'lastname'=>$lastname, 'course'=>$course, 'section'=>$section));
+                    'firstname'=>$firstname, 'lastname'=>$lastname, 'courseSectionId'=>$sectionCourse, 'course'=>$course, 'section'=>$section));                    
+                    }
                    
                    }
             } 
