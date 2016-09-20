@@ -45,17 +45,29 @@ if(isset($_REQUEST['username']) && isset($_REQUEST['password'])&& isset($_REQUES
 	$returnValue = 1;
 	echo $returnValue;
 
+<<<<<<< HEAD
 	exit();   
+=======
+	exit();
+>>>>>>> ac6a0a41a566b97837818cdae326f1ef9ac8ef2e
 	}
 
 	#if the user already exists no action is taken an a 0 is returned to indicated that the user was not added to the database
 	$returnValue = 0;
 	echo $returnValue;
+<<<<<<< HEAD
   exit(); 
+=======
+  exit();
+>>>>>>> ac6a0a41a566b97837818cdae326f1ef9ac8ef2e
 
 }
 else
 $returnValue = -1;
 echo $returnValue;
+<<<<<<< HEAD
 exit();     
+=======
+exit();
+>>>>>>> ac6a0a41a566b97837818cdae326f1ef9ac8ef2e
 ?>

@@ -67,4 +67,8 @@ if(isset($_REQUEST['id'])) {
    exit();
 }
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> ac6a0a41a566b97837818cdae326f1ef9ac8ef2e

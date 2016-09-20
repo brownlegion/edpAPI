@@ -60,7 +60,11 @@
             
                 $records3 = $result3->getRecords();
                 foreach ($records3 as $record3) {
+<<<<<<< HEAD
                                             $tempid3 = $record3->getField('id');
+=======
+           $tempid3 = $record3->getField('id');
+>>>>>>> ac6a0a41a566b97837818cdae326f1ef9ac8ef2e
            $tempmark = $record3->getField('mark');
            $updated = $record3->getField('last_updated');
            $updatedBy = $record3->getField('last_updated_by');
@@ -89,4 +93,8 @@
     exit();
   }
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> ac6a0a41a566b97837818cdae326f1ef9ac8ef2e
